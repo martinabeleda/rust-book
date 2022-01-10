@@ -59,3 +59,22 @@ fn read_username_from_file_shortcut() -> Result<String, io::Error> {
     f = read_to_string(&mut s)?;
     Ok(s)
 }
+
+// Creating custom types for validation
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must be between 1 and 100, got {}.", value);
+        }
+
+        Guess { value }
+    }
+
+    pub fn value(&self) -> i32 {
+        self.value
+    }
+}
